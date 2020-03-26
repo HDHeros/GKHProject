@@ -1,3 +1,1 @@
 # GKHProject
-checkSergey
-chekDenis
