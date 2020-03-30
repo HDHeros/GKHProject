@@ -1,4 +1,5 @@
 from django.db import models
+from fixed_assets.models import PC, Printer, Monitor
 
 class Mobile_Phone(models.Model):
     numder_mobile_phone = models.CharField('Номер моб. телуфона', max_length= 13)
@@ -13,7 +14,7 @@ class Work_Phone(models.Model):
     number_work_phone = models.CharField('Городской телефон', max_length = 10)
 
 class Kab(models.Model):
-    number_kab = models.IntegerField('Номер кабинета', max_length = 2)
+    number_kab = models.CharField('Номер кабинета', max_length = 5)
     branch = models.ForeignKey(Branch, on_delete = models.PROTECT)
     work_phone = models.ForeignKey(Work_Phone, on_delete = models.PROTECT)
 
@@ -33,3 +34,6 @@ class User(models.Model):
     kab = models.ForeignKey(Kab, on_delete = models.PROTECT)
     work_phone = models.ForeignKey(Work_Phone, on_delete = models.PROTECT)
     name_role = models.ForeignKey(Role, on_delete = models.PROTECT)
+    pc = models.OneToOneField(PC, on_delete = models.PROTECT)
+    printer = models.OneToOneField(Printer, on_delete = models.PROTECT)
+    monitor = models.OneToOneField(Monitor, on_delete = models.PROTECT)
