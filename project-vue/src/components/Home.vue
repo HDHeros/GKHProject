@@ -33,7 +33,7 @@ export default {
 					text: "Фамилия",
 					value: "surname"
 				},
-				{ text: "Имя", value: "name" },
+		{ text: "Имя", value: "name" },
         { text: "Отчество", value: "middle_name" },
         { text: "Мобильный телефон", value: "mobile_phone.numder_mobile_phone"},
         { text: "Городской телефон", value: "work_phone.number_work_phone"},
