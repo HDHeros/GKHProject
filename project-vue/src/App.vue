@@ -1,16 +1,11 @@
 <template>
   <v-app>
-    <v-navigation-drawer floating id="navigation" app>
-    </v-navigation-drawer>
-
+    <Menu/>
     <v-app-bar class="heder" app>
       <Header/>
     </v-app-bar>
 
-    <!-- Sizes your content based upon application components -->
     <v-content class = "content">
-
-      <!-- Provides the application the proper gutter -->
       <v-container fluid>
           <Home/>
         <router-view></router-view>
@@ -18,7 +13,6 @@
     </v-content>
 
     <v-footer  app>
-      <!-- -->
     </v-footer>
   </v-app>
 </template>
@@ -26,13 +20,14 @@
 <script>
 import Home from './components/Home';
 import Header from './components/Header';
-
+import Menu from './components/Menu';
 export default {
   name: 'App',
 
   components: {
     Home,
     Header,
+    Menu,
   },
 
   data: () => ({
@@ -46,14 +41,13 @@ export default {
     box-shadow: none ;
     background-color: #F6F7FA;
   }
-  #navigation {
-    display: flex;
-    height: 100%;
-    background-color: #ff0000;
-  }
+  // #navigation {
+  //   display: flex;
+  //   height: 100%;
+  //   background-color: #ffffff;
+  // }
   .content {
     background-color: #F6F7FA;
-    border: none;
   }
 
   .v-app-bar.v-toolbar__content {
