@@ -9,7 +9,7 @@
           <v-img src="../assets/menu.svg" height="30" width="30"></v-img>
         </v-list-item-avatar>
 
-        <v-list-item-title style="padding-left: 12px;">ЖКХ «‎Комплекс»‎</v-list-item-title>
+        <p style="color: #232426;" class="font-weight-bold">ЖКХ «‎Комплекс»</p>‎
 
         <v-btn
           icon
@@ -20,22 +20,12 @@
       </v-list-item>
 
       <v-divider></v-divider>
-
-      <v-list dense>
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+      <div class="text-center">
+          <button class="btn">
+              <img src="../assets/home.svg" height="22" width="22">
+              <p class="font-weight-regular">Home</p>
+          </button>       
+      </div>
     </v-navigation-drawer>
 
 </template>
@@ -57,6 +47,31 @@
 </script>
 
 <style lang="scss" scoped>
+  .theme--light.v-navigation-drawer .v-divider {
+    border-color: rgb(255, 255, 255);
+}
+  .v-application .text-center {
+    padding-left: 15px;
+  }
+  .v-application p {
+    width: 70% !important;
+}
+  .btn {
+    display: flex;
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    margin:auto;
+    padding-left: 6%;
+    outline: none;
+      
+  }
+  
+  .btn:hover { 
+      background-color: rgba(71, 71, 71, 0.089) !important; 
+  }
 
+
+  
 
 </style>
