@@ -1,7 +1,7 @@
 <template>
     <button class="btn">
         <svg-icon class="svg-button" :name=icon />
-        <p class="font-weight-regular">{{title}}</p>
+        <p class="label">{{title}}</p>
     </button> 
 </template>
 
@@ -19,9 +19,24 @@
 </script>
 
 <style lang="scss" scoped>
-  .btn:hover {
-    .svg-button{
-        stroke: #5D21D2;
-    } 
+    .btn:hover{
+         .label{
+            color: #5D21D2 !important;
+        }
+        .svg-button{
+            fill: #5D21D2;
+        }
+       
+    }
+  
+  .svg-button{
+    fill:rgb(83, 86, 88);
+  }
+  p{
+      color: rgb(83, 85, 87) !important;
+      font-size: 15px !important;
+      width: 0% !important;
+      padding-left: 16px !important;
+      font-weight: 400;
   }
 </style>

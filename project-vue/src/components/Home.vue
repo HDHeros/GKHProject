@@ -1,49 +1,36 @@
 <template>
-	<!-- <div>
-        <ul>
-        <li v-for="users in info.data" v-bind:key="users.id">
-          {{users.mobile_phone.numder_mobile_phone}}
-        </li>  
-      </ul>
-	</div>-->
-	<v-card>
-		<v-card-title>
-			Сотрудники
-			<v-spacer></v-spacer>
-			<v-text-field v-model="search" append-icon="mdi-magnify" label="Поиск" single-line hide-details></v-text-field>
-		</v-card-title>
-		<v-data-table :headers="headers" :items="info.data" :search="search"></v-data-table>
-	</v-card>
+    <div>
+        <div>
+            <p class="label-welcome">Добро пожаловать,<span class="label-name"> Сергей</span></p>
+        </div>
+        <div>
+            <div>
+                <Card/>
+            </div>  
+        </div>  
+    </div>
 </template>
 
 <script>
-import axios from "axios";
+import Card from './Card';
+
 export default {
-	mounted() {
-		axios.get("http://127.0.0.1:8000/api/v1/user/").then(response => {
-			this.info = response.data.data;
-		});
-	},
-	data() {
-		return {
-			search: "",
-			info: [],
-			headers: [
-				{
-					text: "Фамилия",
-					value: "surname"
-				},
-		{ text: "Имя", value: "name" },
-        { text: "Отчество", value: "middle_name" },
-        { text: "Мобильный телефон", value: "mobile_phone.numder_mobile_phone"},
-        { text: "Городской телефон", value: "work_phone.number_work_phone"},
-        { text: "Должность", value: "post.name_post"},
-        { text: "Кабинет", value: "kab.number_kab"},
-        { text: "Отдел", value: "kab.branch.name_branch"}
-			],
-		};
-	}
-};
+    components:{
+        Card,
+    }
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+    .label-welcome{
+        color: #828588;
+        font-size: 20px;
+        padding-left: 0px !important;
+    }
+
+    .label-name{
+        color: rgb(44, 48, 51);
+
+    }
+</style>
