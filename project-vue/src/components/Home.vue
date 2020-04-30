@@ -1,36 +1,52 @@
 <template>
-    <div>
-        <div>
-            <p class="label-welcome">Добро пожаловать,<span class="label-name"> Сергей</span></p>
-        </div>
-        <div>
-            <div>
-                <Card/>
-            </div>  
-        </div>  
-    </div>
+  <v-app>
+    <Menu/>
+    <v-app-bar class="heder pr-5" app>
+      <Header/>
+    </v-app-bar>
+
+    <v-content class = "content mt-9 pr-2">
+      <v-container class="pl-0 pt-0 pr-12" fluid>
+          <Home/>
+          <!-- <Users/> -->
+      </v-container>
+    </v-content>
+
+    <v-footer  app>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
-import Card from './Card';
-
+// import Users from './components/Users';
+import Header from '../components/Header';
+import Menu from '../components/Menu';
+import Home from '../components/HomeContent';
 export default {
-    components:{
-        Card,
-    }
-}
+  name: 'App',
+  components: {
+    // Users,
+    Home,
+    Header,
+    Menu,
+  },
+  data: () => ({
+    //
+  }),
+};
 </script>
 
 <style lang="scss" scoped>
-
-    .label-welcome{
-        color: #828588;
-        font-size: 20px;
-        padding-left: 0px !important;
-    }
-
-    .label-name{
-        color: rgb(44, 48, 51);
-
-    }
+  .heder {
+    box-shadow: none ;
+    background-color: #F6F7FA;
+  }
+  .content {
+    background-color: #F6F7FA;
+    margin-left: 56px;
+  }
+  .v-app-bar.v-toolbar__content {
+    width: 100% !important;
+  }
+  
 </style>
