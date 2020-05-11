@@ -27,7 +27,7 @@ SECRET_KEY = '^u%=_(z6eu04k=1x8=vmy7or=ztfmwn0$_*t3(a$-0n7&@dc5b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -45,9 +45,12 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'requestBIT.apps.RequestbitConfig',
     'fixed_assets.apps.FixedAssetsConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,6 +58,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ORIGIN_WHITELIST  = [
+     "http://localhost:8080",
 ]
 
 ROOT_URLCONF = 'GKXProject2.urls'
@@ -169,4 +176,5 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
 

@@ -1,21 +1,24 @@
 <template>
-  
-        <!-- <input v-model="login" type="text" placeholder="Логин">
-        <input v-model="password" type="password" placeholder="Пароль">
-        <button @click="setLogin">Войти</button> -->
- <div>
-     <div id="overlay"></div>
-    <div class="loginbox">
-        <h1>Sign in</h1><br>
-        <form>
-            <input type="text" placeholder="Username"><br>
-            <input type="password" placeholder="Password">
-            <input @click="setLogin" type="submit" value="LOGIN">
-        </form>
-        <a href="#">Forgot Password?</a><br>
-        <span id="text-account">Don't have an account?</span><a id="create-account" href="#"> Create here.</a>
+    <div class="box">
+        <div id="header">
+            <div id="cont-lock">
+                <p class="lock">ЖКХ «Комплекс»</p>
+            </div>
+        </div> 
+            <div class="group">      
+                <input v-model="login" class="inputMaterial" type="text" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Логин</label>
+            </div>
+            <div class="group">      
+                <input v-model="password" class="inputMaterial" type="password" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Пароль</label>
+            </div>
+            <button @click="setLogin" id="buttonlogintoregister" type="submit">Войти</button>
     </div>
- </div>
 </template>
 
 <script>
@@ -30,8 +33,8 @@ export default {
     },
     methods:{
         setLogin(){
-            this.$router.push({name:"home"})
-            Axios.post('http://127.0.0.1:8000/api/v1/user/token/login/',{
+           // this.$router.push({name:"home"})
+            Axios.post('http://127.0.0.1:8000/auth/token/login/',{
                 username: this.login,
                 password: this.password
             })
@@ -44,111 +47,392 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    body{
-    margin: 0;
-    padding: 0;
-    background: url('https://images.unsplash.com/photo-1464278533981-50106e6176b1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ca5f9140f345647ac9bc4c1597a56404&auto=format&fit=crop&w=667&q=80');
-    background-size: cover;
-    font-family: 'Open Sans', sans-serif;
-    z-index: -10;
+
+/* BOX LOGIN */
+.box{
+	position: relative;
+	margin: auto;
+	height: 350px;
+  top: 100px;
+	left: 0;
+	z-index: 200;
+	right: 0;
+	width:400px;
+	color:#666;
+	border-radius: 3px;
+	background: #FFF;
+  margin-bottom: 100px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  overflow: hidden;
 }
 
-#overlay{
-    position: absolute;
-    background-color: rgba(0,0,0,0.7);
-    z-index: -5;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    bottom: 0;
+#header{
+  background: #5D21D2;
+  position: relative;
+  height: 80px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#cont-lock{
+  width: 100%;
+  height: 65px;
+  position: relative;
+}
+
+.lock{
+  text-align: center;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  line-height: 80px;
+  font-size: 25px !important;
+    font-family: "Roboto";
     
 }
 
-.loginbox{
-    width: 320px;
-    height: 360px;
-    color: #000;
-    top: 50%;
-    left: 50%;
-    padding: 60px 30px;
-    position: absolute;
-    transform: translate(-50%,  -50%);
-    box-sizing: border-box;
-    border-radius: 3%;
-    box-shadow: 8px 8px 50px #000;
-}
-h1{
-    color: #fff;
-    margin: 0;
-    padding: 0 0 0px;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
+#bottom-head::after{
+  content: '';
+  width: 0px;
+  height: 0px;
+  display: block;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 7px solid white;
+  border-right: 7px solid rgba(0,0,0,0);
+  border-left: 7px solid rgba(0,0,0,0);
+  border-top: 7px solid rgba(0,0,0,0);
 }
 
-.loginbox p {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    font-size: 13px;
+.box h1{
+  margin-left: 20px;
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: 300;
+  color: #cfd8dc;
+  line-height: 35px;
 }
+
+.box button{
+	background: #5D21D2;
+	border:0;
+	color: rgb(255, 255, 255);
+	padding:10px;
+	font-size: 15px;
+    font-family: "Roboto Regular";
+    font-weight: 300;
+	width:330px;
+	margin:20px auto;
+	display:block;
+	cursor:pointer;
+    -webkit-transition: all 0.4s;
+	transition: all 0.4s;
+	border-radius: 2px;
+    
+}
+
+.box button:active{
+	background: #5D21D2;
+    color: #5D21D2;
+}
+
+.box button:hover{
+	background: rgba(92, 33, 210, 0.863);
+    color: #FFF;
+    -webkit-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.box p{
+	font-size:14px;
+    
+	text-align:center;
+}
+
+.group 			  { 
+  position:relative; 
+  margin-bottom: 35px; 
+  margin-left: 40px;
+}
+
+.inputMaterial 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+
+.inputMaterial:focus 		{ outline:none;}
+
+/* LABEL ======================================= */
+
+label 				 {
+  color:rgb(66, 66, 66); 
+  font-size:14px;
+    font-family: "Roboto Regular";
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+.inputMaterial:focus ~ label, .inputMaterial:valid ~ label 		{
+  top:-10px;
+  font-size:14px;
+  color: #5D21D2;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:315px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background: #5D21D2; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+.inputMaterial:focus ~ .bar:before, .inputMaterial:focus ~ .bar:after {
+  width:50%;
+}
+
+
+/* active state */
+.inputMaterial:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+
+.sign-up{
+  color: white;
+  cursor: pointer;
+}
+
+.sign-up:hover{
+   color: #b2dfdb; 
+}
+
+$transition: all 0.3s;
+$shadow-L1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$shadow-L2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+$shadow-L3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+body{
+  background: #F6F7FA;
+}
+
+#container-a{
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  overflow: hidden;
+  transition: $transition;
+  box-shadow: $shadow-L3;
+      
+  /*&:hover{
+    width: 150px;
+    border-radius: 50px;
+    transition: $transition;
+  }*/
+  
+  #badge{
+  width: 100%;
+  height: 100%;
+  background-image: url("https://lh3.googleusercontent.com/-X-aQXHatDQY/Uy86XLOyEdI/AAAAAAAAAF0/TBEZvkCnLVE/w140-h140-p/fb3a11ae-1fb4-4c31-b2b9-bf0cfa835c27"); 
+  background-size: 100%;
+  transition: $transition;
+  position: absolute;
+  
+  
+    &:hover .codepen{
+     display: block;
+    }
+  }
+  
+  &:hover #letter{
+      display: block;
+  }
+  
+  &:hover #badge{
+    width: 150px;
+    height: 150px;
+    transition: $transition;
+    filter: blur(7px);
+  } 
  
-.loginbox input{
+  #letter{
+    display: none;
+    z-index: 20;
     width: 100%;
-    margin-bottom: 20px;
-}
-
-.loginbox input[type="text"], input[type="password"]{
-    border: none;
-    border-bottom: 1px solid #bdc3c7;
-    background: transparent;
-    outline: none;
-    height: 30px;
-    font-size: 16px;
-    opacity: 1;
-    color: #ccc;
-}
-
-
-.loginbox input[type="submit"]{
-    border: none;
-    outline: none;
-    height: 40px;
-    background: #2ecc71;
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 20px;
-    font-family: 'Open Sans', sans-serif;
-}
-
-.loginbox input[type="submit"]:hover {
-    cursor: pointer;
-    background: #27ae60;
-    color: #fff;
+    height: 100%;
+    position: absolute;
     
+    span{
+      font-family: 'Roboto';
+      font-size: 32px;
+      color: white;
+      text-align: center;
+      line-height: 60px;
+      margin: auto;
+      left: 0;
+      right: 0;
+      position: absolute;
+      cursor: pointer;
+    }
+  }
 }
 
-.loginbox a {
-    font-size: 14px;
-    text-decoration: none;
-    color: #fff;
-    opacity: 0.8;
+
+#container-floating{
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  top: 20px;
+  right: 20px;
+  z-index: 50px;
+  
+  &:hover{
+    height: 400px;
+    width: 60px;
+    top: 20px;
+    right: 20px;
+  }
+  
+  &:hover .nds{
+    animation: bounce-nds 0.1s linear;
+    animation-fill-mode:  forwards;
+  }
+  &:hover .nd3{
+    animation-delay: 0.08s;
+  }
+  &:hover .nd4{
+    animation-delay: 0.15s;
+  }
+  &:hover .nd5{
+    animation-delay: 0.2s;
+  }
+  
+  .nds{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: fixed;
+    z-index: 300;
+    transform:  scale(0);
+    right: 33px;
+    cursor: pointer;
+    &:hover{
+      box-shadow: $shadow-L3;
+      transition: $transition;
+      width: 50px;
+      right: 25px;
+      height: 50px;
+    }
+  }
+
+  .nd1{
+    background-image: url("https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Large.png");
+    background-size: 100%;
+    top: 110px;
+    animation-delay: 0.1s;
+    animation: bounce-out-nds 0.3s linear;
+    animation-fill-mode:  forwards;
+    box-shadow: $shadow-L2;
+    transition: $transition;
+  }
+
+  .nd3{
+    background: url("https://cdn3.iconfinder.com/data/icons/free-social-icons/67/twitter_circle_color-512.png");
+    background-size: 100%;
+    top: 165px;
+    animation-delay: 0.15s;
+    animation: bounce-out-nds 0.15s linear;
+    animation-fill-mode:  forwards;
+    box-shadow: $shadow-L2;
+    transition: $transition;
+  }
+
+  .nd4{
+    background: url("http://www.studiotomasi.org/images/gplusicon.svg");
+    background-size: 100%;
+    top: 225px;
+    animation-delay: 0.1s;
+    animation: bounce-out-nds 0.1s linear;
+    animation-fill-mode:  forwards;
+    box-shadow: $shadow-L2;
+    transition: $transition;
+  }
+  
 }
 
-.loginbox a:hover {
-    color: #fff;
-    opacity: 1;
+
+@keyframes bounce-nds{
+    from {opacity: 0;}
+    to {opacity: 1; transform: scale(1);}
 }
 
-#text-account {
-    font-size: 14px;
-    color: #fff;
-    opacity: 0.4;
+@keyframes bounce-out-nds{
+    from {opacity: 1; transform: scale(1);}
+    to {opacity: 0; transform: scale(0);}
 }
 
-#create-account:hover {
-    text-decoration: underline;
-    font-weight: bold;
+
+.profile-name{
+    line-height: 60px;
+    left: -70px;
+    position: absolute;
+    font-family: 'Roboto';
+    color: #455a64;
+}
+
+.profile-name:hover{
+  text-decoration: underline;
+}
+
+a:link, a:visited{
+  text-decoration: none;
 }
 </style>
