@@ -1,12 +1,25 @@
 <template>
-    <div>
-        <input v-model="login" type="text" placeholder="Логин">
+  
+        <!-- <input v-model="login" type="text" placeholder="Логин">
         <input v-model="password" type="password" placeholder="Пароль">
-        <button @click="goMain">Войти</button>
+        <button @click="setLogin">Войти</button> -->
+ <div>
+     <div id="overlay"></div>
+    <div class="loginbox">
+        <h1>Sign in</h1><br>
+        <form>
+            <input type="text" placeholder="Username"><br>
+            <input type="password" placeholder="Password">
+            <input @click="setLogin" type="submit" value="LOGIN">
+        </form>
+        <a href="#">Forgot Password?</a><br>
+        <span id="text-account">Don't have an account?</span><a id="create-account" href="#"> Create here.</a>
     </div>
+ </div>
 </template>
 
 <script>
+import Axios from 'axios'
 export default {
     name: "Login",
     data(){
@@ -16,9 +29,126 @@ export default {
         }
     },
     methods:{
-        goMain(){
+        setLogin(){
             this.$router.push({name:"home"})
+            Axios.post('http://127.0.0.1:8000/api/v1/user/token/login/',{
+                username: this.login,
+                password: this.password
+            })
+            .then((response)=>{
+                 console.log(response.data);
+            })
         }
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    body{
+    margin: 0;
+    padding: 0;
+    background: url('https://images.unsplash.com/photo-1464278533981-50106e6176b1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ca5f9140f345647ac9bc4c1597a56404&auto=format&fit=crop&w=667&q=80');
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+    z-index: -10;
+}
+
+#overlay{
+    position: absolute;
+    background-color: rgba(0,0,0,0.7);
+    z-index: -5;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    
+}
+
+.loginbox{
+    width: 320px;
+    height: 360px;
+    color: #000;
+    top: 50%;
+    left: 50%;
+    padding: 60px 30px;
+    position: absolute;
+    transform: translate(-50%,  -50%);
+    box-sizing: border-box;
+    border-radius: 3%;
+    box-shadow: 8px 8px 50px #000;
+}
+h1{
+    color: #fff;
+    margin: 0;
+    padding: 0 0 0px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.loginbox p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 13px;
+}
+ 
+.loginbox input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.loginbox input[type="text"], input[type="password"]{
+    border: none;
+    border-bottom: 1px solid #bdc3c7;
+    background: transparent;
+    outline: none;
+    height: 30px;
+    font-size: 16px;
+    opacity: 1;
+    color: #ccc;
+}
+
+
+.loginbox input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #2ecc71;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.loginbox input[type="submit"]:hover {
+    cursor: pointer;
+    background: #27ae60;
+    color: #fff;
+    
+}
+
+.loginbox a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.loginbox a:hover {
+    color: #fff;
+    opacity: 1;
+}
+
+#text-account {
+    font-size: 14px;
+    color: #fff;
+    opacity: 0.4;
+}
+
+#create-account:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+</style>
