@@ -2,7 +2,7 @@
     <div class="box">
         <div id="header">
             <div id="cont-lock">
-                <p class="lock">ЖКХ «Комплекс»</p>
+                <p class="lock">СГУПП ЖКХ «Комплекс»</p>
             </div>
         </div> 
             <div class="group">      
@@ -33,13 +33,19 @@ export default {
     },
     methods:{
         setLogin(){
-           // this.$router.push({name:"home"})
-            Axios.post('http://127.0.0.1:8000/auth/token/login/',{
+            // this.$router.push({name:"home"})
+            Axios.post('http://192.168.1.89:8000/auth/token/login/',{
                 username: this.login,
                 password: this.password
             })
             .then((response)=>{
-                 console.log(response.data);
+                localStorage.setItem("auth_token",response.data.auth_token);
+                this.$router.push({name:"home"});
+            })
+            .catch((response)=>{
+                if(response == "Error: Request failed with status code 400"){
+                  alert("Логин или пароль не верен")
+                }
             })
         }
     }
@@ -53,7 +59,7 @@ export default {
 	position: relative;
 	margin: auto;
 	height: 350px;
-  top: 100px;
+    top: 100px;
 	left: 0;
 	z-index: 200;
 	right: 0;
@@ -61,9 +67,9 @@ export default {
 	color:#666;
 	border-radius: 3px;
 	background: #FFF;
-  margin-bottom: 100px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  overflow: hidden;
+    margin-bottom: 100px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    overflow: hidden;
 }
 
 #header{
@@ -90,9 +96,8 @@ export default {
   top: 0;
   bottom: 0;
   line-height: 80px;
-  font-size: 25px !important;
-    font-family: "Roboto";
-    
+  font-size: 23px !important;
+  font-family: "Roboto";
 }
 
 #bottom-head::after{
@@ -114,7 +119,7 @@ export default {
 .box h1{
   margin-left: 20px;
   margin-top: 0;
-  font-size: 24px;
+	font-size: 24px;
   font-weight: 300;
   color: #cfd8dc;
   line-height: 35px;
@@ -135,7 +140,6 @@ export default {
     -webkit-transition: all 0.4s;
 	transition: all 0.4s;
 	border-radius: 2px;
-    
 }
 
 .box button:active{
@@ -150,12 +154,6 @@ export default {
 	transition: all 0.4s;
 }
 
-.box p{
-	font-size:14px;
-    
-	text-align:center;
-}
-
 .group 			  { 
   position:relative; 
   margin-bottom: 35px; 
@@ -166,12 +164,12 @@ export default {
   font-size:18px;
   padding:10px 10px 10px 5px;
   display:block;
-  width:300px;
+  width:315px;
   border:none;
   border-bottom:1px solid #757575;
 }
 
-.inputMaterial:focus 		{ outline:none;}
+.inputMaterial:focus { outline:none;}
 
 /* LABEL ======================================= */
 
@@ -221,7 +219,6 @@ label 				 {
   width:50%;
 }
 
-
 /* active state */
 .inputMaterial:focus ~ .highlight {
   -webkit-animation:inputHighlighter 0.3s ease;
@@ -229,210 +226,7 @@ label 				 {
   animation:inputHighlighter 0.3s ease;
 }
 
-/* ANIMATIONS ================ */
-@-webkit-keyframes inputHighlighter {
-	from { background:#5264AE; }
-  to 	{ width:0; background:transparent; }
-}
-@-moz-keyframes inputHighlighter {
-	from { background:#5264AE; }
-  to 	{ width:0; background:transparent; }
-}
-@keyframes inputHighlighter {
-	from { background:#5264AE; }
-  to 	{ width:0; background:transparent; }
-}
-
-.sign-up{
-  color: white;
-  cursor: pointer;
-}
-
-.sign-up:hover{
-   color: #b2dfdb; 
-}
-
-$transition: all 0.3s;
-$shadow-L1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-$shadow-L2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-$shadow-L3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-
 body{
   background: #F6F7FA;
-}
-
-#container-a{
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  overflow: hidden;
-  transition: $transition;
-  box-shadow: $shadow-L3;
-      
-  /*&:hover{
-    width: 150px;
-    border-radius: 50px;
-    transition: $transition;
-  }*/
-  
-  #badge{
-  width: 100%;
-  height: 100%;
-  background-image: url("https://lh3.googleusercontent.com/-X-aQXHatDQY/Uy86XLOyEdI/AAAAAAAAAF0/TBEZvkCnLVE/w140-h140-p/fb3a11ae-1fb4-4c31-b2b9-bf0cfa835c27"); 
-  background-size: 100%;
-  transition: $transition;
-  position: absolute;
-  
-  
-    &:hover .codepen{
-     display: block;
-    }
-  }
-  
-  &:hover #letter{
-      display: block;
-  }
-  
-  &:hover #badge{
-    width: 150px;
-    height: 150px;
-    transition: $transition;
-    filter: blur(7px);
-  } 
- 
-  #letter{
-    display: none;
-    z-index: 20;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    
-    span{
-      font-family: 'Roboto';
-      font-size: 32px;
-      color: white;
-      text-align: center;
-      line-height: 60px;
-      margin: auto;
-      left: 0;
-      right: 0;
-      position: absolute;
-      cursor: pointer;
-    }
-  }
-}
-
-
-#container-floating{
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  top: 20px;
-  right: 20px;
-  z-index: 50px;
-  
-  &:hover{
-    height: 400px;
-    width: 60px;
-    top: 20px;
-    right: 20px;
-  }
-  
-  &:hover .nds{
-    animation: bounce-nds 0.1s linear;
-    animation-fill-mode:  forwards;
-  }
-  &:hover .nd3{
-    animation-delay: 0.08s;
-  }
-  &:hover .nd4{
-    animation-delay: 0.15s;
-  }
-  &:hover .nd5{
-    animation-delay: 0.2s;
-  }
-  
-  .nds{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    position: fixed;
-    z-index: 300;
-    transform:  scale(0);
-    right: 33px;
-    cursor: pointer;
-    &:hover{
-      box-shadow: $shadow-L3;
-      transition: $transition;
-      width: 50px;
-      right: 25px;
-      height: 50px;
-    }
-  }
-
-  .nd1{
-    background-image: url("https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Large.png");
-    background-size: 100%;
-    top: 110px;
-    animation-delay: 0.1s;
-    animation: bounce-out-nds 0.3s linear;
-    animation-fill-mode:  forwards;
-    box-shadow: $shadow-L2;
-    transition: $transition;
-  }
-
-  .nd3{
-    background: url("https://cdn3.iconfinder.com/data/icons/free-social-icons/67/twitter_circle_color-512.png");
-    background-size: 100%;
-    top: 165px;
-    animation-delay: 0.15s;
-    animation: bounce-out-nds 0.15s linear;
-    animation-fill-mode:  forwards;
-    box-shadow: $shadow-L2;
-    transition: $transition;
-  }
-
-  .nd4{
-    background: url("http://www.studiotomasi.org/images/gplusicon.svg");
-    background-size: 100%;
-    top: 225px;
-    animation-delay: 0.1s;
-    animation: bounce-out-nds 0.1s linear;
-    animation-fill-mode:  forwards;
-    box-shadow: $shadow-L2;
-    transition: $transition;
-  }
-  
-}
-
-
-@keyframes bounce-nds{
-    from {opacity: 0;}
-    to {opacity: 1; transform: scale(1);}
-}
-
-@keyframes bounce-out-nds{
-    from {opacity: 1; transform: scale(1);}
-    to {opacity: 0; transform: scale(0);}
-}
-
-
-.profile-name{
-    line-height: 60px;
-    left: -70px;
-    position: absolute;
-    font-family: 'Roboto';
-    color: #455a64;
-}
-
-.profile-name:hover{
-  text-decoration: underline;
-}
-
-a:link, a:visited{
-  text-decoration: none;
 }
 </style>

@@ -60,10 +60,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST  = [
-     "http://localhost:8080",
-]
+# CORS_ORIGIN_WHITELIST  = [
+#      "http://localhost:8080",
+#      "http://192.168.1.83:8080",
 
+# ]
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'GKXProject2.urls'
 
 TEMPLATES = [
@@ -136,7 +138,7 @@ STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
 
-    'DEFAULT_PERMISSION_CLASSES': [
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ]
